@@ -1,0 +1,4 @@
+// Plot Price
+//03 Feb 2019
+Plot(Close ,"Close Price",colorRed,styleLine);
+Plot(MA(Close,20),"MA20",colorBlue,styleLine);

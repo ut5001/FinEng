@@ -1,0 +1,38 @@
+//mini template//
+
+//backtest setting 
+	SetOption("InitialEquity",1000000);// money
+	SetOption("MaxOpenPositions",20);// 
+	SetOption("MinShares",100);//
+	RoundLotSize = 100; //
+	SetOption("CommissionMode",1);//
+	SetOption("CommissionAmount",0.2);//
+	
+//entry
+	SetTradeDelays(1,1,0,0);// delay
+	BuyPrice = Open;
+	buyMACD = MACD() > 0;//
+	buyEMA = Cross(EMA(Close,13),EMA(C,26));
+	//Buy = buyMACD AND buyEMA;
+	//Buy = buyMACD;
+	Buy = buyEMA;
+
+//exit
+	SellPrice = Open;
+	sellMACD = MACD() < 0;//
+	sellEMA = Cross(EMA(Close,26),EMA(C,13));
+	// Sell = sellMACD OR sellEMA;
+	Sell = sellEMA;
+
+//position size
+	//SetPositionSize(1000,spsNoChange);//nochange
+	// SetPositionSize(5,spsPercentOfPosition);//percent per port
+
+//position score
+	// PositionScore = Volume;
+	// PositionScore = -RSI();
+	
+// apply stop
+	ApplyStop(stopTypeLoss,stopModePercent,10);
+	ApplyStop(stopTypeTrailing,stopModePercent,20);
+

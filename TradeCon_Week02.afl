@@ -1,0 +1,13 @@
+// Trade Concept Week 2
+// buyEMA = Cross(EMA(Close,13),EMA(C,26));
+// sellEMA = Cross(EMA(Close,26),EMA(C,13));
+
+
+Plot(Close ,"Close Price",colorRed,styleLine);
+
+SetTradeDelays(1,1,0,0);
+Buy = Cross(EMA(Close,13),EMA(C,26));
+Sell = Cross(EMA(Close,26),EMA(C,13));
+
+PlotShapes(Buy*shapeUpArrow,colorGreen,0,Low);
+PlotShapes(Sell*shapeDownArrow,colorRed,0,High);
